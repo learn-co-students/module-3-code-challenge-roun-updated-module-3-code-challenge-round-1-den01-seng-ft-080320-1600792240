@@ -5,10 +5,11 @@ const likesContainer = document.querySelector('.likes')
 const commentsContainer = document.querySelector('.comments')
 const likeButton = document.querySelector('.like-button')
 const form = document.querySelector('.comment-form')
+const inputContainer = document.querySelector('.comment-input')
 
 
 form.addEventListener('submit', addComment)
-likeButton.addEventListener('click', (event) => increaseLikes(event))
+likeButton.addEventListener('click', increaseLikes)
 
 let amountOfLikes = 0
 
@@ -29,7 +30,7 @@ fetch(baseURL)
         })
     }
 
-function increaseLikes(event){
+function increaseLikes(){
     amountOfLikes += 1
     likesContainer.textContent = amountOfLikes + " likes"
     fetch(baseURL, {
@@ -44,10 +45,10 @@ function increaseLikes(event){
 
 function addComment(event){
     event.preventDefault()
-
     const formData = new FormData(event.target)
     const comment = formData.get('comment')
     const commentItem = document.createElement('li')
     commentItem.textContent = comment
     commentsContainer.appendChild(commentItem)
+    inputContainer.value = ""
 }
