@@ -131,4 +131,5 @@ body {
   border-right: 2px;
   border-radius: 16px;
   margin-right: 10px;
+  margin-top: inherit;
 }

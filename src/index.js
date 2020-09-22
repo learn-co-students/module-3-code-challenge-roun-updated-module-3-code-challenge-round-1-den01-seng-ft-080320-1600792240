@@ -26,7 +26,10 @@ fetch(baseURL)
         commentsContainer.innerHTML = ""
         response.comments.forEach(comment => {
             const commentItem = document.createElement('li')
-            commentItem.textContent = comment.content
+            const commentContent = document.createElement('h4')
+            commentContent.classList.add('content')
+            commentContent.textContent = comment.content
+            commentItem.appendChild(commentContent)
             const deleteButton = document.createElement('button')
             deleteButton.classList.add('delete')
             deleteButton.textContent = "Delete"
