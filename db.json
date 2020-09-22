@@ -14,11 +14,6 @@
       "content": "What a cute dog!"
     },
     {
-      "id": 2,
-      "imageId": 1,
-      "content": "He's got a nose for bugs!"
-    },
-    {
       "id": 3,
       "imageId": 1,
       "content": "Woof!"
@@ -27,6 +22,11 @@
       "imageId": 1,
       "content": "What a good boi",
       "id": 4
+    },
+    {
+      "imageId": 1,
+      "content": "Is he looking for a job?",
+      "id": 5
     }
   ]
 }

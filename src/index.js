@@ -7,7 +7,6 @@ const commentsContainer = document.querySelector('.comments')
 const likeButton = document.querySelector('.like-button')
 const form = document.querySelector('.comment-form')
 const inputContainer = document.querySelector('.comment-input')
-let commentsList = []
 
 
 form.addEventListener('submit', addComment)
@@ -27,20 +26,18 @@ fetch(baseURL)
         commentsContainer.innerHTML = ""
         response.comments.forEach(comment => {
             const commentItem = document.createElement('li')
-            commentsList.push(comment.content)
             commentItem.textContent = comment.content
             const deleteButton = document.createElement('button')
             deleteButton.classList.add('delete')
             deleteButton.textContent = "Delete"
             commentsContainer.appendChild(commentItem)
             commentItem.append(deleteButton)
-            deleteButton.addEventListener('click', (event) => deleteComment(event, commentItem))
+            deleteButton.addEventListener('click', (event) => deleteComment(event, comment))
         })
     }
 
-function deleteComment(event, commentItem){
-    console.log(commentItem.textContent)
-    console.log(commentsList)
+function deleteComment(event, comment){
+    fetch(`${commentURL}/${comment.id}`, { method: "DELETE" })
 }
 
 function increaseLikes(){
@@ -58,11 +55,16 @@ function increaseLikes(){
 
 function addComment(event){
     event.preventDefault()
+    const deleteButton = document.createElement('button')
+    deleteButton.classList.add('delete')
+    deleteButton.textContent = "Delete"
     const formData = new FormData(event.target)
     const comment = formData.get('comment')
     const commentItem = document.createElement('li')
     commentItem.textContent = comment
     commentsContainer.appendChild(commentItem)
+    commentItem.append(deleteButton)
+    deleteButton.addEventListener('click', (event) => deleteComment(event, comment))
     inputContainer.value = ""
     fetch(commentURL, {
         method: "POST",
