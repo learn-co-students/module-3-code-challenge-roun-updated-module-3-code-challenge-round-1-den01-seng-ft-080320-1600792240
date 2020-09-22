@@ -1,4 +1,5 @@
 const baseURL = "http://localhost:3000/images/1"
+const commentURL = "http://localhost:3000/comments"
 const imageContainer = document.querySelector('.image')
 const titleContainer = document.querySelector('.title')
 const likesContainer = document.querySelector('.likes')
@@ -51,4 +52,12 @@ function addComment(event){
     commentItem.textContent = comment
     commentsContainer.appendChild(commentItem)
     inputContainer.value = ""
+    fetch(commentURL, {
+        method: "POST",
+        headers: {
+            'Accept': 'application/json',
+            'Content-type': 'application/json'
+        },
+        body: JSON.stringify({imageId: 1, content: comment})
+    })
 }
