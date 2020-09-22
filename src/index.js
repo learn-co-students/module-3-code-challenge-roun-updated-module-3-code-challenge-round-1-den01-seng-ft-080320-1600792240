@@ -1,5 +1,6 @@
 const baseURL = "http://localhost:3000/images/1"
 const commentURL = "http://localhost:3000/comments"
+
 const imageContainer = document.querySelector('.image')
 const titleContainer = document.querySelector('.title')
 const likesContainer = document.querySelector('.likes')

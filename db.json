@@ -3,7 +3,7 @@
     {
       "id": 1,
       "title": "Woofing those bugs away",
-      "likes": 5,
+      "likes": 6,
       "image": "./assets/coder-dog.png"
     }
   ],
@@ -25,7 +25,7 @@
     },
     {
       "imageId": 1,
-      "content": "Is he looking for a job?",
+      "content": "Coding Doge",
       "id": 5
     }
   ]
