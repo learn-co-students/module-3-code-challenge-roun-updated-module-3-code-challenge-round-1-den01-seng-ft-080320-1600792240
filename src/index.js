@@ -1,5 +1,6 @@
 const baseURL = "http://localhost:3000/images/1"
 const commentURL = "http://localhost:3000/comments"
+
 const imageContainer = document.querySelector('.image')
 const titleContainer = document.querySelector('.title')
 const likesContainer = document.querySelector('.likes')
@@ -18,18 +19,18 @@ fetch(baseURL)
     .then(response => response.json())
     .then(response => getImageInfo(response) )
 
-    function getImageInfo(response){
-        imageContainer.src = response.image
-        titleContainer.textContent = response.title
-        amountOfLikes = response.likes
-        likesContainer.textContent = amountOfLikes + " likes"
-        commentsContainer.innerHTML = ""
-        response.comments.forEach(comment => {
-            const commentItem = document.createElement('li')
-            commentItem.textContent = comment.content
-            commentsContainer.appendChild(commentItem)
-        })
-    }
+function getImageInfo(response){
+    imageContainer.src = response.image
+    titleContainer.textContent = response.title
+    amountOfLikes = response.likes
+    likesContainer.textContent = amountOfLikes + " likes"
+    commentsContainer.innerHTML = ""
+    response.comments.forEach(comment => {
+        const commentItem = document.createElement('li')
+        commentItem.textContent = comment.content
+        commentsContainer.appendChild(commentItem)
+    })
+}
 
 function increaseLikes(){
     amountOfLikes += 1
