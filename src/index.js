@@ -3,6 +3,7 @@ const titleContainer = document.querySelector('.title')
 const likesContainer = document.querySelector('.likes')
 const commentsContainer = document.querySelector('.comments')
 const likeButton = document.querySelector('.like-button')
+let amountOfLikes = 0
 
 fetch('http://localhost:3000/images/1')
     .then(response => response.json())
@@ -12,7 +13,8 @@ fetch('http://localhost:3000/images/1')
     function getImageInfo(response){
         imageContainer.src = response.image
         titleContainer.textContent = response.title
-        likesContainer.textContent = response.likes + " likes"
+        amountOfLikes = response.likes
+        likesContainer.textContent = amountOfLikes + " likes"
         commentsContainer.innerHTML = ""
         response.comments.forEach(comment => {
             const commentItem = document.createElement('li')
@@ -24,6 +26,7 @@ fetch('http://localhost:3000/images/1')
 likeButton.addEventListener('click', (event) => increaseLikes(event))
 
 function increaseLikes(event){
-    console.log(event)
+    amountOfLikes += 1
+    likesContainer.textContent = amountOfLikes + " likes"
 }
 
