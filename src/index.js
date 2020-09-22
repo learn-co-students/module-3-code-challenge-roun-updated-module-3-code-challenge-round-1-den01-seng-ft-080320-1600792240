@@ -4,12 +4,17 @@ const titleContainer = document.querySelector('.title')
 const likesContainer = document.querySelector('.likes')
 const commentsContainer = document.querySelector('.comments')
 const likeButton = document.querySelector('.like-button')
+const form = document.querySelector('.comment-form')
+
+
+form.addEventListener('submit', addComment)
+likeButton.addEventListener('click', (event) => increaseLikes(event))
+
 let amountOfLikes = 0
 
 fetch(baseURL)
     .then(response => response.json())
     .then(response => getImageInfo(response) )
-
 
     function getImageInfo(response){
         imageContainer.src = response.image
@@ -24,8 +29,6 @@ fetch(baseURL)
         })
     }
 
-likeButton.addEventListener('click', (event) => increaseLikes(event))
-
 function increaseLikes(event){
     amountOfLikes += 1
     likesContainer.textContent = amountOfLikes + " likes"
@@ -39,3 +42,12 @@ function increaseLikes(event){
     })
 }
 
+function addComment(event){
+    event.preventDefault()
+
+    const formData = new FormData(event.target)
+    const comment = formData.get('comment')
+    const commentItem = document.createElement('li')
+    commentItem.textContent = comment
+    commentsContainer.appendChild(commentItem)
+}
