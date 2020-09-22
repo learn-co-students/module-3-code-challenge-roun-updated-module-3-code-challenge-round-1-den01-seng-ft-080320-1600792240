@@ -126,6 +126,9 @@ body {
   outline: none;
 }
 
-/* .delete {
-  justify-content: space-between;
-} */
+.delete {
+  border-left: 2px;
+  border-right: 2px;
+  border-radius: 16px;
+  margin-right: 10px;
+}
